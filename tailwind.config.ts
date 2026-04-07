@@ -47,6 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        exam: {
+          answered: "hsl(var(--exam-answered))",
+          unanswered: "hsl(var(--exam-unanswered))",
+          current: "hsl(var(--exam-current))",
+          wrong: "hsl(var(--exam-wrong))",
+          timer: "hsl(var(--exam-timer))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
