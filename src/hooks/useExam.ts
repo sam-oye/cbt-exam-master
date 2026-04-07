@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { questionsData, type Question } from "@/data/questions";
+import { recordResult } from "@/lib/examLog";
 
 const EXAM_TIME = 2100; // 35 minutes
 const STORAGE_KEY = "cbt_exam_state";
@@ -70,7 +71,10 @@ export function useExam() {
   const submit = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     setSubmitted(true);
-  }, []);
+    const timeUsed = EXAM_TIME - timeLeft;
+    const s = questions.reduce((acc, q) => acc + (answers[q.id] === q.correctAnswer ? 1 : 0), 0);
+    recordResult(s, questions.length, timeUsed);
+  }, [timeLeft, answers, questions]);
 
   const score = questions.reduce((acc, q) => acc + (answers[q.id] === q.correctAnswer ? 1 : 0), 0);
   const answeredCount = Object.keys(answers).length;
