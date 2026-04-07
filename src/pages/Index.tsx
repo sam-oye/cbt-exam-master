@@ -10,6 +10,14 @@ const Index = () => {
   const exam = useExam();
   const [showConfirm, setShowConfirm] = useState(false);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "L") downloadLog();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   const handleSubmit = () => {
     if (exam.answeredCount < exam.total) {
       setShowConfirm(true);
