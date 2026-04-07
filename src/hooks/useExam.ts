@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { questionsData, type Question } from "@/data/questions";
+import { recordResult } from "@/lib/examLog";
 
 const EXAM_TIME = 2100; // 35 minutes
 const STORAGE_KEY = "cbt_exam_state";
