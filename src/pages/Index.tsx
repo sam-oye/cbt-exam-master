@@ -3,7 +3,8 @@ import { QuestionCard } from "@/components/QuestionCard";
 import { QuestionNavigator } from "@/components/QuestionNavigator";
 import { ExamTimer } from "@/components/ExamTimer";
 import { ExamResults } from "@/components/ExamResults";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { downloadLog } from "@/lib/examLog";
 
 const Index = () => {
   const exam = useExam();
