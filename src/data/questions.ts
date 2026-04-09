@@ -6,47 +6,247 @@ export interface Question {
   correctAnswer: string;
 }
 
-const rawQuestions = [
-  { section: "Mechanics", question: "A stone is thrown vertically upward with a speed of 30 m/s. What is the maximum height reached? (g = 10 m/s²)", options: ["A. 30 m", "B. 45 m", "C. 60 m", "D. 90 m"], correct_answer: "B. 45 m" },
-  { section: "Mechanics", question: "A body of mass 2 kg is moving with a velocity of 5 m/s. A constant force of 4 N acts on it in the direction opposite to motion. How long will it take to come to rest?", options: ["A. 0.5 s", "B. 1.0 s", "C. 2.5 s", "D. 5.0 s"], correct_answer: "C. 2.5 s" },
-  { section: "Mechanics", question: "A car accelerates uniformly from rest to a speed of 20 m/s in 10 seconds. What is the distance covered?", options: ["A. 50 m", "B. 100 m", "C. 150 m", "D. 200 m"], correct_answer: "B. 100 m" },
-  { section: "Mechanics", question: "A ball of mass 0.5 kg is hit with a bat and its velocity changes from 10 m/s to 30 m/s in 0.2 s. What is the average force exerted?", options: ["A. 20 N", "B. 25 N", "C. 50 N", "D. 100 N"], correct_answer: "C. 50 N" },
-  { section: "Mechanics", question: "A 5 kg block is pulled along a horizontal surface by a force of 20 N. If the coefficient of kinetic friction is 0.2, what is the acceleration? (g = 10 m/s²)", options: ["A. 1 m/s²", "B. 2 m/s²", "C. 3 m/s²", "D. 4 m/s²"], correct_answer: "B. 2 m/s²" },
-  { section: "Mechanics", question: "A projectile is fired at an angle of 30° to the horizontal with a velocity of 40 m/s. What is the time of flight? (g = 10 m/s²)", options: ["A. 2 s", "B. 3 s", "C. 4 s", "D. 5 s"], correct_answer: "C. 4 s" },
-  { section: "Mechanics", question: "A body of mass 10 kg is suspended by a rope. If the rope breaks when the tension exceeds 120 N, what is the maximum upward acceleration the rope can withstand? (g = 10 m/s²)", options: ["A. 1 m/s²", "B. 2 m/s²", "C. 3 m/s²", "D. 4 m/s²"], correct_answer: "B. 2 m/s²" },
-  { section: "Mechanics", question: "The coefficient of static friction between a block and a horizontal surface is 0.5. What is the minimum horizontal force required to move a 10 kg block? (g = 10 m/s²)", options: ["A. 20 N", "B. 30 N", "C. 40 N", "D. 50 N"], correct_answer: "D. 50 N" },
-  { section: "Mechanics", question: "A satellite orbits the Earth at a height equal to the Earth's radius. What is its orbital speed? (Earth's radius R = 6400 km, g = 10 m/s²)", options: ["A. 4.0 km/s", "B. 5.6 km/s", "C. 7.9 km/s", "D. 11.2 km/s"], correct_answer: "B. 5.6 km/s" },
-  { section: "Mechanics", question: "A body of mass 2 kg is attached to a string of length 1 m and whirled in a horizontal circle at 5 revolutions per second. What is the centripetal force?", options: ["A. 100π² N", "B. 200π² N", "C. 300π² N", "D. 400π² N"], correct_answer: "B. 200π² N" },
-  { section: "Heat and Energy", question: "A 200 g copper block at 100°C is placed into 300 g of water at 20°C. The final temperature is 25°C. What is the specific heat capacity of copper? (Specific heat of water = 4200 J/kg°C)", options: ["A. 300 J/kg°C", "B. 350 J/kg°C", "C. 400 J/kg°C", "D. 450 J/kg°C"], correct_answer: "C. 400 J/kg°C" },
-  { section: "Heat and Energy", question: "A gas expands from 2 m³ to 4 m³ at constant pressure of 1.0 × 10⁵ Pa. How much work is done by the gas?", options: ["A. 1.0 × 10⁵ J", "B. 2.0 × 10⁵ J", "C. 3.0 × 10⁵ J", "D. 4.0 × 10⁵ J"], correct_answer: "B. 2.0 × 10⁵ J" },
-  { section: "Heat and Energy", question: "An iron rod of length 2 m at 0°C is heated to 100°C. If the coefficient of linear expansion is 1.2 × 10⁻⁵ /K, what is the new length?", options: ["A. 2.0024 m", "B. 2.024 m", "C. 2.24 m", "D. 2.4 m"], correct_answer: "A. 2.0024 m" },
-  { section: "Heat and Energy", question: "How much heat is required to convert 500 g of ice at 0°C to water at 20°C? (Latent heat of fusion = 3.34 × 10⁵ J/kg, specific heat of water = 4200 J/kg°C)", options: ["A. 1.67 × 10⁵ J", "B. 2.09 × 10⁵ J", "C. 2.51 × 10⁵ J", "D. 3.76 × 10⁵ J"], correct_answer: "B. 2.09 × 10⁵ J" },
-  { section: "Heat and Energy", question: "The temperature of a gas is increased from 27°C to 327°C at constant volume. The ratio of final pressure to initial pressure is", options: ["A. 1:1", "B. 2:1", "C. 3:1", "D. 4:1"], correct_answer: "B. 2:1" },
-  { section: "Waves and Sound", question: "A wave has a frequency of 500 Hz and a speed of 340 m/s. What is the phase difference between two points 0.17 m apart?", options: ["A. π/2 rad", "B. π rad", "C. 3π/2 rad", "D. 2π rad"], correct_answer: "B. π rad" },
-  { section: "Waves and Sound", question: "A pipe closed at one end has a length of 0.85 m. If the speed of sound is 340 m/s, what is the fundamental frequency?", options: ["A. 100 Hz", "B. 200 Hz", "C. 400 Hz", "D. 800 Hz"], correct_answer: "A. 100 Hz" },
-  { section: "Waves and Sound", question: "A sound wave of intensity 10⁻⁶ W/m² has an intensity level (in dB) of (I₀ = 10⁻¹² W/m²)", options: ["A. 20 dB", "B. 40 dB", "C. 60 dB", "D. 80 dB"], correct_answer: "C. 60 dB" },
-  { section: "Waves and Sound", question: "Two sound sources produce frequencies 256 Hz and 258 Hz. How many beats are heard per second?", options: ["A. 1", "B. 2", "C. 3", "D. 4"], correct_answer: "B. 2" },
-  { section: "Light and Optics", question: "A concave mirror has a focal length of 15 cm. Where should an object be placed to obtain a real image twice the size of the object?", options: ["A. 7.5 cm", "B. 15 cm", "C. 22.5 cm", "D. 30 cm"], correct_answer: "C. 22.5 cm" },
-  { section: "Light and Optics", question: "The critical angle for a glass-air interface is 42°. What is the refractive index of glass?", options: ["A. 1.33", "B. 1.49", "C. 1.50", "D. 1.67"], correct_answer: "B. 1.49" },
-  { section: "Light and Optics", question: "A convex lens of focal length 20 cm is used to form an image of an object placed 15 cm from the lens. The image is", options: ["A. Real and inverted", "B. Virtual and erect", "C. Real and erect", "D. Virtual and inverted"], correct_answer: "B. Virtual and erect" },
-  { section: "Light and Optics", question: "A beam of light passes from air into water (n = 1.33). If the angle of incidence is 45°, what is the angle of refraction?", options: ["A. 28.1°", "B. 32.1°", "C. 45.0°", "D. 60.0°"], correct_answer: "B. 32.1°" },
-  { section: "Light and Optics", question: "The focal length of a converging lens is 10 cm. Its power in diopters is", options: ["A. 0.1 D", "B. 1.0 D", "C. 10 D", "D. 100 D"], correct_answer: "C. 10 D" },
-  { section: "Electricity and Magnetism", question: "A 10 Ω resistor and a 20 Ω resistor are connected in parallel across a 12 V battery. What is the total current drawn?", options: ["A. 0.4 A", "B. 0.6 A", "C. 1.2 A", "D. 1.8 A"], correct_answer: "D. 1.8 A" },
-  { section: "Electricity and Magnetism", question: "A wire of resistance 5 Ω is stretched to double its original length. What is its new resistance?", options: ["A. 2.5 Ω", "B. 5 Ω", "C. 10 Ω", "D. 20 Ω"], correct_answer: "D. 20 Ω" },
-  { section: "Electricity and Magnetism", question: "A 100 W bulb is connected to a 250 V supply. What is the current drawn?", options: ["A. 0.2 A", "B. 0.4 A", "C. 2.5 A", "D. 25 A"], correct_answer: "B. 0.4 A" },
-  { section: "Electricity and Magnetism", question: "Three capacitors of 2 μF, 3 μF, and 6 μF are connected in series. The equivalent capacitance is", options: ["A. 1 μF", "B. 2 μF", "C. 3 μF", "D. 6 μF"], correct_answer: "A. 1 μF" },
-  { section: "Electricity and Magnetism", question: "A transformer has 200 primary turns and 800 secondary turns. If the primary voltage is 120 V, what is the secondary voltage?", options: ["A. 30 V", "B. 120 V", "C. 240 V", "D. 480 V"], correct_answer: "D. 480 V" },
-  { section: "Electricity and Magnetism", question: "A galvanometer of resistance 50 Ω gives full-scale deflection for 5 mA. How can it be converted to a voltmeter reading 0–10 V?", options: ["A. Series resistor 1950 Ω", "B. Series resistor 2000 Ω", "C. Shunt resistor 0.25 Ω", "D. Shunt resistor 0.5 Ω"], correct_answer: "A. Series resistor 1950 Ω" },
-  { section: "Modern Physics", question: "The photoelectric work function of a metal is 2.5 eV. What is the threshold wavelength? (h = 6.63 × 10⁻³⁴ Js, c = 3 × 10⁸ m/s, 1 eV = 1.6 × 10⁻¹⁹ J)", options: ["A. 497 nm", "B. 400 nm", "C. 350 nm", "D. 250 nm"], correct_answer: "A. 497 nm" },
-  { section: "Modern Physics", question: "The half-life of a radioactive substance is 4 days. What fraction of the original sample remains after 16 days?", options: ["A. 1/2", "B. 1/4", "C. 1/8", "D. 1/16"], correct_answer: "D. 1/16" },
-  { section: "Modern Physics", question: "In a nuclear reaction, the mass defect is 0.1 u. The energy released is (1 u = 931.5 MeV/c²)", options: ["A. 9.315 MeV", "B. 93.15 MeV", "C. 931.5 MeV", "D. 9315 MeV"], correct_answer: "B. 93.15 MeV" },
-  { section: "Modern Physics", question: "A photon has an energy of 3.0 eV. What is its frequency? (h = 6.63 × 10⁻³⁴ Js)", options: ["A. 4.5 × 10¹⁴ Hz", "B. 7.2 × 10¹⁴ Hz", "C. 9.0 × 10¹⁴ Hz", "D. 1.2 × 10¹⁵ Hz"], correct_answer: "B. 7.2 × 10¹⁴ Hz" },
-  { section: "Modern Physics", question: "Which of the following particles has the highest penetrating power?", options: ["A. Alpha particles", "B. Beta particles", "C. Gamma rays", "D. Neutrons"], correct_answer: "C. Gamma rays" },
-  { section: "General and Other", question: "The phenomenon of total internal reflection occurs when light travels from", options: ["A. Air to water", "B. Water to glass", "C. Glass to air", "D. Air to glass"], correct_answer: "C. Glass to air" },
-  { section: "General and Other", question: "The unit of magnetic flux is", options: ["A. Tesla", "B. Weber", "C. Henry", "D. Gauss"], correct_answer: "B. Weber" },
-  { section: "General and Other", question: "A step-down transformer has a turns ratio of 10:1. If the primary voltage is 240 V, the secondary voltage is", options: ["A. 24 V", "B. 48 V", "C. 2400 V", "D. 240 V"], correct_answer: "A. 24 V" },
-  { section: "General and Other", question: "The product of the pressure and volume of a fixed mass of an ideal gas is proportional to its", options: ["A. Celsius temperature", "B. Absolute temperature", "C. Number of molecules", "D. Density"], correct_answer: "B. Absolute temperature" },
-  { section: "General and Other", question: "Which of the following statements about the mass of a body is true?", options: ["A. It varies with location", "B. It is the same as weight", "C. It is a measure of inertia", "D. It depends on gravitational field"], correct_answer: "C. It is a measure of inertia" },
+const rawQuestions =[
+  {
+    "section": "Mechanics",
+    "question": "A particle is projected horizontally from the top of a tower of height 80 m with a speed of 30 m/s. What is the speed with which it hits the ground? (g = 10 m/s²)",
+    "options": ["A. 30 m/s", "B. 40 m/s", "C. 50 m/s", "D. 60 m/s"],
+    "correct_answer": "C. 50 m/s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass 2 kg moving with a velocity of 6 m/s collides head-on with a stationary body of mass 4 kg. If the collision is perfectly inelastic, what is the common velocity after collision?",
+    "options": ["A. 1 m/s", "B. 2 m/s", "C. 3 m/s", "D. 4 m/s"],
+    "correct_answer": "B. 2 m/s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A stone is thrown vertically upward from the edge of a cliff 50 m high with a speed of 20 m/s. What is the total time it takes to reach the bottom of the cliff? (g = 10 m/s²)",
+    "options": ["A. 2 s", "B. 4 s", "C. 5 s", "D. 6 s"],
+    "correct_answer": "C. 5 s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A particle moves along a straight line such that its displacement s = t³ - 6t² + 9t + 2 (in meters). At what time does the particle momentarily come to rest?",
+    "options": ["A. 1 s and 3 s", "B. 2 s and 4 s", "C. 1 s only", "D. 3 s only"],
+    "correct_answer": "A. 1 s and 3 s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A force of 10 N is applied at an angle of 60° to the horizontal to pull a 5 kg box across a rough horizontal floor. If the box moves at constant speed, what is the coefficient of kinetic friction? (g = 10 m/s²)",
+    "options": ["A. 0.1", "B. 0.2", "C. 0.3", "D. 0.4"],
+    "correct_answer": "A. 0.1"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A satellite orbits the Earth at a distance of 3R from the Earth's center, where R is the Earth's radius. What is its orbital period in terms of the period T of a satellite close to Earth's surface? (Assume circular orbits)",
+    "options": ["A. T/3", "B. T√3", "C. 3T", "D. 3√3 T"],
+    "correct_answer": "D. 3√3 T"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 2 kg block is placed on a rough inclined plane of angle 30° to the horizontal. The coefficient of static friction is 0.5. What is the minimum force parallel to the plane required to prevent the block from sliding down? (g = 10 m/s²)",
+    "options": ["A. 0 N", "B. 5 N", "C. 10 N", "D. 15 N"],
+    "correct_answer": "A. 0 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A projectile is fired with a velocity of 50 m/s at an angle of 53° above the horizontal. What is the maximum height attained? (g = 10 m/s², sin53° = 0.8, cos53° = 0.6)",
+    "options": ["A. 20 m", "B. 40 m", "C. 60 m", "D. 80 m"],
+    "correct_answer": "D. 80 m"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A uniform rod of length 4 m and weight 100 N is pivoted at one end. A force of 40 N is applied vertically downward at the other end. What is the magnitude of the reaction at the pivot?",
+    "options": ["A. 40 N", "B. 60 N", "C. 100 N", "D. 140 N"],
+    "correct_answer": "D. 140 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A car of mass 1000 kg accelerates from rest to 20 m/s in 5 seconds on a horizontal road. If the frictional force is 500 N, what is the power developed by the engine at the end of 5 seconds?",
+    "options": ["A. 40 kW", "B. 50 kW", "C. 60 kW", "D. 80 kW"],
+    "correct_answer": "C. 60 kW"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A ball of mass 0.2 kg is dropped from a height of 5 m onto a hard floor and rebounds to a height of 3.2 m. What is the impulse received by the floor? (g = 10 m/s²)",
+    "options": ["A. 0.8 Ns", "B. 1.2 Ns", "C. 1.6 Ns", "D. 2.0 Ns"],
+    "correct_answer": "C. 1.6 Ns"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass 5 kg is attached to a string of length 2 m and whirled in a vertical circle. What is the minimum speed at the top of the circle for the string to remain taut? (g = 10 m/s²)",
+    "options": ["A. √10 m/s", "B. √20 m/s", "C. √30 m/s", "D. √40 m/s"],
+    "correct_answer": "B. √20 m/s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A block of mass 3 kg is placed on a horizontal surface. A horizontal force of 15 N is applied to it. The coefficient of kinetic friction is 0.2. What is the acceleration? (g = 10 m/s²)",
+    "options": ["A. 1 m/s²", "B. 2 m/s²", "C. 3 m/s²", "D. 4 m/s²"],
+    "correct_answer": "C. 3 m/s²"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A simple pendulum has a period of 2 s on Earth. What is its period on a planet where the acceleration due to gravity is 4 times that on Earth?",
+    "options": ["A. 0.5 s", "B. 1 s", "C. 2 s", "D. 4 s"],
+    "correct_answer": "B. 1 s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass m is projected at an angle θ to the horizontal with speed u. The rate of change of momentum at the highest point is",
+    "options": ["A. mu cosθ", "B. mg", "C. 0", "D. mu sinθ"],
+    "correct_answer": "B. mg"
+  },
+  {
+    "section": "Mechanics",
+    "question": "Two forces of magnitudes 6 N and 8 N act on a particle. The resultant force has a magnitude of 10 N. What is the angle between the forces?",
+    "options": ["A. 0°", "B. 60°", "C. 90°", "D. 120°"],
+    "correct_answer": "C. 90°"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 5 kg block is on a rough horizontal surface (μ = 0.4). A horizontal force of 30 N is applied. What is the frictional force acting? (g = 10 m/s²)",
+    "options": ["A. 20 N", "B. 30 N", "C. 40 N", "D. 50 N"],
+    "correct_answer": "A. 20 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A particle moves in a circle of radius 0.5 m with a constant angular speed of 4 rad/s. What is the magnitude of its acceleration?",
+    "options": ["A. 2 m/s²", "B. 4 m/s²", "C. 8 m/s²", "D. 16 m/s²"],
+    "correct_answer": "C. 8 m/s²"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A stone is thrown horizontally from a cliff 125 m high with a speed of 30 m/s. How far from the base of the cliff does it strike the ground? (g = 10 m/s²)",
+    "options": ["A. 75 m", "B. 100 m", "C. 125 m", "D. 150 m"],
+    "correct_answer": "D. 150 m"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 10 kg block is placed on a frictionless incline of angle 30°. What is the acceleration of the block down the incline? (g = 10 m/s²)",
+    "options": ["A. 2.5 m/s²", "B. 5 m/s²", "C. 7.5 m/s²", "D. 10 m/s²"],
+    "correct_answer": "B. 5 m/s²"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A ball of mass 0.1 kg is thrown vertically upward with a speed of 15 m/s. What is the kinetic energy at the highest point? (g = 10 m/s²)",
+    "options": ["A. 0 J", "B. 1.125 J", "C. 11.25 J", "D. 22.5 J"],
+    "correct_answer": "A. 0 J"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A particle of mass 2 kg moves with velocity v = (3i + 4j) m/s. What is its kinetic energy?",
+    "options": ["A. 5 J", "B. 10 J", "C. 15 J", "D. 25 J"],
+    "correct_answer": "D. 25 J"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass 5 kg is acted upon by a force F = (3t² + 2t) N. What is the impulse from t = 0 to t = 2 seconds?",
+    "options": ["A. 8 Ns", "B. 12 Ns", "C. 16 Ns", "D. 20 Ns"],
+    "correct_answer": "B. 12 Ns"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 2 kg mass moving at 3 m/s collides elastically with a stationary 4 kg mass. What is the velocity of the 2 kg mass after collision?",
+    "options": ["A. -1 m/s", "B. 0 m/s", "C. 1 m/s", "D. 2 m/s"],
+    "correct_answer": "A. -1 m/s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A ball is dropped from a height of 45 m. At the same time, another ball is thrown upward from the ground with a speed of 30 m/s. At what height above the ground do they meet? (g = 10 m/s²)",
+    "options": ["A. 10 m", "B. 15 m", "C. 20 m", "D. 25 m"],
+    "correct_answer": "C. 20 m"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A man of mass 80 kg stands on a weighing scale in an elevator. The scale reads 960 N. What is the acceleration of the elevator? (g = 10 m/s²)",
+    "options": ["A. 2 m/s² upward", "B. 2 m/s² downward", "C. 12 m/s² upward", "D. 12 m/s² downward"],
+    "correct_answer": "A. 2 m/s² upward"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A car of mass 800 kg is moving at 20 m/s. The driver applies brakes and the car stops in 4 seconds. What is the average braking force?",
+    "options": ["A. 2000 N", "B. 4000 N", "C. 6000 N", "D. 8000 N"],
+    "correct_answer": "B. 4000 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A stone is projected at an angle of 60° to the horizontal with a speed of 40 m/s. What is the time to reach the highest point? (g = 10 m/s², sin60° = √3/2 ≈ 0.866)",
+    "options": ["A. 2.0 s", "B. 2.5 s", "C. 3.46 s", "D. 4.0 s"],
+    "correct_answer": "C. 3.46 s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass 1 kg is moving in a straight line with velocity v = 2t² + 3t (m/s). What is the net force acting on the body at t = 2 s?",
+    "options": ["A. 7 N", "B. 11 N", "C. 14 N", "D. 22 N"],
+    "correct_answer": "B. 11 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A satellite of mass m orbits the Earth at a distance 2R from the Earth's center. If the gravitational force is F, what would be the force at a distance R?",
+    "options": ["A. F/4", "B. F/2", "C. 2F", "D. 4F"],
+    "correct_answer": "D. 4F"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 500 g ball moving at 4 m/s strikes a wall perpendicularly and rebounds with the same speed. What is the change in momentum?",
+    "options": ["A. 0 kg m/s", "B. 2 kg m/s", "C. 4 kg m/s", "D. 8 kg m/s"],
+    "correct_answer": "C. 4 kg m/s"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass 2 kg is at rest on a smooth horizontal surface. A force of 6 N acts for 3 seconds. What is the final kinetic energy?",
+    "options": ["A. 27 J", "B. 54 J", "C. 81 J", "D. 162 J"],
+    "correct_answer": "C. 81 J"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A particle moves in a circle of radius 2 m with constant tangential acceleration of 3 m/s². If it starts from rest, what is its centripetal acceleration after 2 seconds?",
+    "options": ["A. 6 m/s²", "B. 12 m/s²", "C. 18 m/s²", "D. 24 m/s²"],
+    "correct_answer": "C. 18 m/s²"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A 2 kg block is placed on a rough incline of angle 37° (sin37° = 0.6, cos37° = 0.8). The coefficient of static friction is 0.5. Will the block slide? (g = 10 m/s²)",
+    "options": ["A. Yes, because mg sinθ > friction", "B. No, because mg sinθ < friction", "C. Yes, because mg sinθ = friction", "D. No, because mg cosθ > friction"],
+    "correct_answer": "A. Yes, because mg sinθ > friction"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A force F = (2i + 3j) N acts on a particle and displaces it from (1,2) m to (3,5) m. What is the work done?",
+    "options": ["A. 10 J", "B. 13 J", "C. 15 J", "D. 17 J"],
+    "correct_answer": "D. 17 J"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A simple pendulum of length 1 m has a bob of mass 0.1 kg. It is displaced to an angle of 60° and released. What is the tension in the string at the lowest point? (g = 10 m/s²)",
+    "options": ["A. 1 N", "B. 2 N", "C. 3 N", "D. 4 N"],
+    "correct_answer": "B. 2 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A rocket of mass 1000 kg ejects fuel at a rate of 20 kg/s with exhaust velocity 500 m/s relative to the rocket. What is the initial thrust?",
+    "options": ["A. 5000 N", "B. 10000 N", "C. 20000 N", "D. 50000 N"],
+    "correct_answer": "B. 10000 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A ball is thrown upward with speed u. The time taken to reach half the maximum height is",
+    "options": ["A. u/g (1 - 1/√2)", "B. u/g (1 + 1/√2)", "C. u/(√2 g)", "D. u/g"],
+    "correct_answer": "A. u/g (1 - 1/√2)"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A uniform ladder of length 5 m and weight 200 N rests against a smooth vertical wall. The foot of the ladder is 3 m from the wall. What is the reaction from the wall?",
+    "options": ["A. 75 N", "B. 100 N", "C. 150 N", "D. 200 N"],
+    "correct_answer": "A. 75 N"
+  },
+  {
+    "section": "Mechanics",
+    "question": "A body of mass m moving with speed v collides obliquely with a stationary identical body. After collision, they move at 60° to each other. What is the speed of each?",
+    "options": ["A. v/2", "B. v/√2", "C. v/√3", "D. v"],
+    "correct_answer": "A. v/2"
+  }
 ];
 
 export const questionsData: Question[] = rawQuestions.map((q, i) => ({
